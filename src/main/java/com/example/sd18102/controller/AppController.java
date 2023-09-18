@@ -42,21 +42,32 @@ public class AppController {
             @RequestParam("username") String username,
             @RequestParam("gioiTinh") String gioiTinh,
             @RequestParam("diaChi") String diaChi
-    ){
-        sinhVienService.add(new SinhVien(id,username,gioiTinh,diaChi));
+    ) {
+        sinhVienService.add(new SinhVien(id, username, gioiTinh, diaChi));
         return "redirect:/sinh-vien/hien-thi";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable String id){
+    public String delete(@PathVariable String id) {
         sinhVienService.delete(id);
         return "redirect:/sinh-vien/hien-thi";
     }
 
     @GetMapping("/detail/{id}")
-    public String detail(@PathVariable String id, Model model){
+    public String detail(@PathVariable String id, Model model) {
         SinhVien sinhVien = sinhVienService.detail(id);
         model.addAttribute("sinhVien", sinhVien);
         return "detail";
+    }
+
+    @PostMapping("/update/{id}")
+    public String update(
+            @PathVariable String id,
+            @RequestParam("username") String username,
+            @RequestParam("gioiTinh") String gioiTinh,
+            @RequestParam("diaChi") String diaChi
+    ) {
+        sinhVienService.update(id, new SinhVien(username, gioiTinh, diaChi));
+        return "redirect:/sinh-vien/hien-thi";
     }
 }

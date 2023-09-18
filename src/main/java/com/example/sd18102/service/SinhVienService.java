@@ -13,4 +13,6 @@ public interface SinhVienService {
     Boolean delete(String id);
 
     SinhVien detail(String id);
+
+    Boolean update(String id, SinhVien sinhVien);
 }

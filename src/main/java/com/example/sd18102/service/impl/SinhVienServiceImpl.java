@@ -47,4 +47,17 @@ public class SinhVienServiceImpl implements SinhVienService {
         }
         return sinhVienDetail;
     }
+
+    @Override
+    public Boolean update(String id, SinhVien sinhVien) {
+        for (SinhVien sv : listSinhVien){
+            if (sv.getId().equals(id)){
+                sv.setDiaChi(sinhVien.getDiaChi());
+                sv.setUsername(sinhVien.getUsername());
+                sv.setGioiTinh(sinhVien.getGioiTinh());
+            }
+            break;
+        }
+        return true;
+    }
 }

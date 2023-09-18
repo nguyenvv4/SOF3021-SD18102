@@ -18,5 +18,9 @@ public class SinhVien {
 
     private String diaChi;
 
-
+    public SinhVien(String username, String gioiTinh, String diaChi) {
+        this.username = username;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+    }
 }

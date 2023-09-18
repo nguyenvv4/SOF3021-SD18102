@@ -7,7 +7,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="#" , method="post">
+<form action="/sinh-vien/update/${sinhVien.id}" , method="post">
     <div class="form-group">
         <label>id</label>
         <input class="form-control" name="id" value="${sinhVien.id}">
@@ -27,5 +27,5 @@
         <input type="radio" id="contactChoice3" name="gioiTinh" value="Nu"/>
         <label for="contactChoice3">Nu</label>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Update</button>
 </form>
