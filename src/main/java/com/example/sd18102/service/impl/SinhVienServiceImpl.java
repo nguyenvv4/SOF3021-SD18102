@@ -20,4 +20,31 @@ public class SinhVienServiceImpl implements SinhVienService {
     public ArrayList<SinhVien> getAll() {
         return listSinhVien;
     }
+
+    @Override
+    public Boolean add(SinhVien sinhVien) {
+        return listSinhVien.add(sinhVien);
+    }
+
+    @Override
+    public Boolean delete(String id) {
+        for (SinhVien sinhVien : listSinhVien) {
+            if (sinhVien.getId().equals(id)) {
+                listSinhVien.remove(sinhVien);
+                break;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public SinhVien detail(String id) {
+        SinhVien sinhVienDetail = new SinhVien();
+        for (SinhVien sinhVien: listSinhVien){
+            if (sinhVien.getId().equals(id)){
+                sinhVienDetail = sinhVien;
+            }
+        }
+        return sinhVienDetail;
+    }
 }

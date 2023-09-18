@@ -7,10 +7,10 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/sinh-vien/add" , method="post">
+<form action="#" , method="post">
     <div class="form-group">
         <label>id</label>
-        <input class="form-control" name="id">
+        <input class="form-control" name="id" value="${sinhVien.id}">
     </div>
     <div class="form-group">
         <label>Username</label>
@@ -29,29 +29,3 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<p>Hello </p>
-
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">id</th>
-        <th scope="col">username</th>
-        <th scope="col">gioi tinh</th>
-        <th scope="col">dia chi</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${list}" var="sinhVien">
-        <tr>
-            <td>${sinhVien.id}</td>
-            <td>${sinhVien.username}</td>
-            <td>${sinhVien.gioiTinh}</td>
-            <td>${sinhVien.diaChi}</td>
-            <td><a href="/sinh-vien/delete/${sinhVien.id}" class="btn btn-primary">Xoa</a></td>
-            <td><a href="/sinh-vien/detail/${sinhVien.id}" class="btn btn-primary">Detail</a></td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
-</body>
-</html>

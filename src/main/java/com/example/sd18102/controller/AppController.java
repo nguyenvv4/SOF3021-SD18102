@@ -6,10 +6,7 @@ import com.example.sd18102.service.impl.SinhVienServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -37,5 +34,29 @@ public class AppController {
     ) {
         System.out.println("id la: " + ma);
         return "index";
+    }
+
+    @PostMapping("/add")
+    public String add(
+            @RequestParam("id") String id,
+            @RequestParam("username") String username,
+            @RequestParam("gioiTinh") String gioiTinh,
+            @RequestParam("diaChi") String diaChi
+    ){
+        sinhVienService.add(new SinhVien(id,username,gioiTinh,diaChi));
+        return "redirect:/sinh-vien/hien-thi";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable String id){
+        sinhVienService.delete(id);
+        return "redirect:/sinh-vien/hien-thi";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String detail(@PathVariable String id, Model model){
+        SinhVien sinhVien = sinhVienService.detail(id);
+        model.addAttribute("sinhVien", sinhVien);
+        return "detail";
     }
 }
