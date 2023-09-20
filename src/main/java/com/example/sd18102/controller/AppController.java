@@ -3,9 +3,11 @@ package com.example.sd18102.controller;
 import com.example.sd18102.model.SinhVien;
 import com.example.sd18102.service.SinhVienService;
 import com.example.sd18102.service.impl.SinhVienServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class AppController {
         ArrayList<SinhVien> listSinhVien = sinhVienService.getAll();
         System.out.println(listSinhVien.size());
         model.addAttribute("list", listSinhVien);
+        model.addAttribute("sinhVien", new SinhVien());
         return "index";
     }
 
@@ -36,16 +39,16 @@ public class AppController {
         return "index";
     }
 
-    @PostMapping("/add")
-    public String add(
-            @RequestParam("id") String id,
-            @RequestParam("username") String username,
-            @RequestParam("gioiTinh") String gioiTinh,
-            @RequestParam("diaChi") String diaChi
-    ) {
-        sinhVienService.add(new SinhVien(id, username, gioiTinh, diaChi));
-        return "redirect:/sinh-vien/hien-thi";
-    }
+//    @PostMapping("/add")
+//    public String add(
+//            @RequestParam("id") String id,
+//            @RequestParam("username") String username,
+//            @RequestParam("gioiTinh") String gioiTinh,
+//            @RequestParam("diaChi") String diaChi
+//    ) {
+//        sinhVienService.add(new SinhVien(id, username, gioiTinh, diaChi));
+//        return "redirect:/sinh-vien/hien-thi";
+//    }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable String id) {
@@ -68,6 +71,19 @@ public class AppController {
             @RequestParam("diaChi") String diaChi
     ) {
         sinhVienService.update(id, new SinhVien(username, gioiTinh, diaChi));
+        return "redirect:/sinh-vien/hien-thi";
+    }
+
+    @PostMapping("/add")
+    public String add(
+            @Valid @ModelAttribute("sinhVien") SinhVien sinhVien,
+            BindingResult bindingResult,
+            Model model
+    ) {
+        if(bindingResult.hasErrors()){
+            return "index";
+        }
+        sinhVienService.add(sinhVien);
         return "redirect:/sinh-vien/hien-thi";
     }
 }
