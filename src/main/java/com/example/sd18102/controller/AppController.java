@@ -1,6 +1,8 @@
 package com.example.sd18102.controller;
 
+import com.example.sd18102.model.CuaHang;
 import com.example.sd18102.model.SinhVien;
+import com.example.sd18102.repository.CuaHangRepository;
 import com.example.sd18102.service.SinhVienService;
 import com.example.sd18102.service.impl.SinhVienServiceImpl;
 import jakarta.validation.Valid;
@@ -86,4 +88,5 @@ public class AppController {
         sinhVienService.add(sinhVien);
         return "redirect:/sinh-vien/hien-thi";
     }
+
 }
