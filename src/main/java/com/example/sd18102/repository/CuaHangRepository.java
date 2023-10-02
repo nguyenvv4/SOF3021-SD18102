@@ -1,6 +1,8 @@
 package com.example.sd18102.repository;
 
 import com.example.sd18102.model.CuaHang;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -16,4 +18,6 @@ public interface CuaHangRepository extends JpaRepository<CuaHang, UUID> {
 
     @Query(value = "select * from cua_hang", nativeQuery = true)
     List<CuaHang> getAll();
+
+    Page<CuaHang> findAll(Pageable pageable);
 }
