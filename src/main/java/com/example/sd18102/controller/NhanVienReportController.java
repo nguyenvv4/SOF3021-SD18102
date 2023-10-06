@@ -6,11 +6,13 @@ import com.example.sd18102.repository.NhanVienReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,5 +29,10 @@ public class NhanVienReportController {
         List<String> listStr = list.stream().map(x -> x.getTen().toUpperCase()).collect(Collectors.toList());
         listStr.forEach(x -> System.out.println(x.toString()));
         return null;
+    }
+
+    @Scheduled(cron ="*/15 * * * * * ")
+    void check(){
+        System.out.println(new Date());
     }
 }
